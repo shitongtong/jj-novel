@@ -60,3 +60,23 @@ CREATE TABLE `chapter` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_chapter_uuid` (`chapter_uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='章节表';
+
+
+DROP TABLE IF EXISTS `collect_entra`;
+CREATE TABLE `collect_entra` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `collect_entra_uuid` varchar(32) NOT NULL,
+  `novel_name` varchar(50) DEFAULT NULL COMMENT '采集的小说名',
+  `collect_website` varchar(100) DEFAULT NULL COMMENT '采集的站点名',
+  `collect_url` varchar(100) DEFAULT NULL COMMENT '采集url',
+  `collect_status` INT(2) DEFAULT '0' COMMENT '采集状态 0:待采集,1:采集中,2:采集完成,3:采集失败',
+  `status` int(2) DEFAULT '1' COMMENT '通用状态 0:删除,1:正常',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_uid` varchar(36) DEFAULT NULL COMMENT '创建人uuid',
+  `update_uid` varchar(36) DEFAULT NULL COMMENT '更新人uuid',
+  `remark` varchar(255) DEFAULT NULL COMMENT '通用备注',
+  `sort` int(8) DEFAULT '0' COMMENT '排序',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_collect_entra_uuid` (`collect_entra_uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='采集入口表';
